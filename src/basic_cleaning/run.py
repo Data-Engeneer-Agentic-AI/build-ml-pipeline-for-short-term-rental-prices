@@ -30,9 +30,21 @@ def go(args):
         df.shape[1],
     )
 
+    # Remove duplicate rows
     df = df.drop_duplicates()
+
+    # Remove rows with missing price
     df = df.dropna(subset=["price"])
+
+    # Keep only listings within the accepted price range
     df = df[df["price"].between(args.min_price, args.max_price)]
+
+    # Keep only listings within the expected NYC geographic boundaries
+    idx = (
+        df["longitude"].between(-74.25, -73.50)
+        & df["latitude"].between(40.5, 41.2)
+    )
+    df = df[idx].copy()
 
     logger.info(
         "Cleaned data has %s rows and %s columns",
@@ -50,6 +62,7 @@ def go(args):
 
     artifact.add_file("clean_sample.csv")
     run.log_artifact(artifact)
+
     run.finish()
 
 
