@@ -592,3 +592,10 @@ Please, make sure all steps are using **the same** python version and that you h
 ## License
 
 [License](LICENSE.txt)
+
+
+
+## Project Links
+
+- GitHub Repository: https://github.com/Data-Engeneer-Agentic-AI/build-ml-pipeline-for-short-term-rental-prices
+- Weights & Biases Project: https://wandb.ai/models-teluq-university/nyc_airbnb
